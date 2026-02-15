@@ -9,15 +9,17 @@
   <body>
     <header>
       <div class="logo">
-        <h1>Student Finance</h1>
+        <h1>
+          Finance Tracker
+        </h1>
       </div>
       <nav>
         <ul class="nav-links">
           <li><a href="#show-dashboard">Dashboard</a></li>
           <li><a href="#show-record">Record</a></li>
-          <li><a href="#show-add-edit">Add/Edit</a></li>
-          <li><a href="#show-about">About</a></li>
+          <li><a href="#show-add-edit">Adding Transactions</a></li>
           <li><a href="#show-setting">Setting</a></li>
+          <li><a href="#show-about">About</a></li>
         </ul>
       </nav>
     </header>
@@ -42,7 +44,7 @@
       </section>
       <section id="show-add-edit" class="add-edit-container">
         <h2>Adding Transactions</h2>
-        <form class="adding-form">
+        <form class="adding-form" id="adding-form">
           <input type="hidden" id="base-id" />
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required />
@@ -78,7 +80,7 @@
           <a href="https://github.com/haru-094"> haru-094</a>
         </p>
       </section>
-      <section id="show-record" class="record-container">
+      <section id="show-record" class="record-container active">
         <div class="search-sort-bar">
           <input
             id="search-input"
@@ -112,13 +114,14 @@
         <div class="budget-cap-container">
           <h3>Recommend Budget Cap</h3>
           <label for="budget-cap">Budget Cap</label>
-          <input type="number" id="budget-cap" placeholder="Ex: 500$" />
+          <input type="number" id="budget-cap" placeholder="Ex: 1000$" />
           <button id="save-budget-cap">Save preference</button>
         </div>
+        
         <div class="export-container">
           <h2>Data Export to JSON</h2>
-          <button id="export-json">Export JSON</button>
-          <label for="import-json">Import JSON</label>
+          <button id="export-json">Export JSON</button><br>
+          <h2><label for="import-json">Import JSON</label></h2>
           <input type="file" id="import-json" />
         </div>
       </section>
