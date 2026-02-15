@@ -33,6 +33,6 @@ function check_validation_regex(field_name, val) {
     }
   }
 
-  //   if everything go right
+  // if everything go right
   return "";
 }
