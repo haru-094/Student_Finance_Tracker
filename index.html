@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
+    <a href="#main-container" class="skip-to-content">skip to content</a>
     <header>
       <div class="logo">
-        <h1>
-          Finance Tracker
-        </h1>
+        <h1>Finance Tracker</h1>
       </div>
       <nav>
         <ul class="nav-links">
@@ -46,7 +45,7 @@
           </div>
           <div class="card">
             <h3>Last 7 Days Trends</h3>
-            <p id="show-last-seven">chart</p>
+            <div class="chart" id="trends-chart"></div>
           </div>
           <div class="card">
             <h3>Total Record</h3>
@@ -64,7 +63,15 @@
           <label for="date">Date</label>
           <input type="date" id="date" name="date" required />
           <label for="amount">Amount</label>
-          <input type="number" id="amount" name="amount" step="0.01" min="0" placeholder="20" required />
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            step="0.01"
+            min="0"
+            placeholder="20"
+            required
+          />
           <span class="error-msg" id="error-amount-msg"></span>
           <label for="category">Category</label>
           <select name="category" id="category">
@@ -100,6 +107,8 @@
             placeholder="search"
             aria-label="Search Transaction"
           />
+          <label for="search-case-toggle">Ignore Case Sensitive</label>
+          <input type="checkbox" id="search-case-toggle" checked />
           <select id="sort-items">
             <option value="based-date">Based On Date</option>
             <option value="based-amount">Based on the Amount</option>
@@ -130,7 +139,7 @@
           <button id="save-budget-cap">Save preference</button>
         </div>
         <div class="currency-change">
-          <h3>Currency Change </h3>
+          <h3>Currency Change</h3>
           <p>Set your main currency for the app</p>
           <label for="currency-changea">Which Prefer Currency </label>
           <select id="currency-select">
@@ -140,14 +149,19 @@
           </select>
           <div class="currency-rate-converter">
             <label for="rwf-rate">RWF Rate</label>
-            <input type="number" id="rwf-rate" step="0.01" placeholder="1400"><br>
+            <input
+              type="number"
+              id="rwf-rate"
+              step="0.01"
+              placeholder="1400"
+            /><br />
             <label for="sar-rate">SAR Rate</label>
-            <input type="number" id="sar-rate" step="0.01" placeholder="3.75">            
+            <input type="number" id="sar-rate" step="0.01" placeholder="3.75" />
           </div>
         </div>
         <div class="export-container">
           <h2>Data Export to JSON</h2>
-          <button id="export-json">Export JSON</button><br>
+          <button id="export-json">Export JSON</button><br />
           <h2><label for="import-json">Import JSON</label></h2>
           <input type="file" id="import-json" />
         </div>
