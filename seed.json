@@ -1,0 +1,92 @@
+[
+  {
+    "id": "txn_1740000000001",
+    "description": "Monthly Tuition Fees",
+    "amount": 1500.00,
+    "category": "Education",
+    "date": "2026-02-01",
+    "createdAt": "2026-02-01T08:00:00.000Z",
+    "updatedAt": "2026-02-01T08:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000002",
+    "description": "Lunch at Cafeteria",
+    "amount": 12.50,
+    "category": "Food",
+    "date": "2026-02-05",
+    "createdAt": "2026-02-05T12:30:00.000Z",
+    "updatedAt": "2026-02-05T12:30:00.000Z"
+  },
+  {
+    "id": "txn_1740000000003",
+    "description": "Data Structures Textbook",
+    "amount": 89.99,
+    "category": "Education",
+    "date": "2026-02-06",
+    "createdAt": "2026-02-06T10:15:00.000Z",
+    "updatedAt": "2026-02-06T10:15:00.000Z"
+  },
+  {
+    "id": "txn_1740000000004",
+    "description": "Bus Monthly Pass",
+    "amount": 45.00,
+    "category": "Transport",
+    "date": "2026-02-01",
+    "createdAt": "2026-02-01T09:00:00.000Z",
+    "updatedAt": "2026-02-01T09:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000005",
+    "description": "Coffee Coffee break",
+    "amount": 5.75,
+    "category": "Food",
+    "date": "2026-02-08",
+    "createdAt": "2026-02-08T15:00:00.000Z",
+    "updatedAt": "2026-02-08T15:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000006",
+    "description": "Gym Membership",
+    "amount": 30.00,
+    "category": "Health",
+    "date": "2026-02-02",
+    "createdAt": "2026-02-02T18:00:00.000Z",
+    "updatedAt": "2026-02-02T18:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000007",
+    "description": "Movie Night",
+    "amount": 15.25,
+    "category": "Entertainment",
+    "date": "2026-02-10",
+    "createdAt": "2026-02-10T20:00:00.000Z",
+    "updatedAt": "2026-02-10T20:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000008",
+    "description": "Internet Subscription",
+    "amount": 60.00,
+    "category": "Others",
+    "date": "2026-02-01",
+    "createdAt": "2026-02-01T07:45:00.000Z",
+    "updatedAt": "2026-02-01T07:45:00.000Z"
+  },
+  {
+    "id": "txn_1740000000009",
+    "description": "New Laptop Mouse",
+    "amount": 25.49,
+    "category": "Shopping",
+    "date": "2026-02-12",
+    "createdAt": "2026-02-12T11:00:00.000Z",
+    "updatedAt": "2026-02-12T11:00:00.000Z"
+  },
+  {
+    "id": "txn_1740000000010",
+    "description": "Pharmacy - Flu Meds",
+    "amount": 18.00,
+    "category": "Health",
+    "date": "2026-02-14",
+    "createdAt": "2026-02-14T09:30:00.000Z",
+    "updatedAt": "2026-02-14T09:30:00.000Z"
+  }
+]
