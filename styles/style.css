@@ -140,7 +140,12 @@ section.active {
     margin-bottom: -0.5rem;
 }
 
-.adding-form input, .adding-form select {
+.adding-form input, .adding-form select,
+.budget-cap-container input, 
+.currency-change select,
+.export-container input,
+.currency-rate-converter #rwf-rate,
+.currency-rate-converter #sar-rate{
     width: 100%;
     padding: 0.8rem;
     border: 2px solid #cbd5e1;
@@ -156,7 +161,9 @@ section.active {
     box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.1);
 }
 
-.adding-form button {
+.adding-form button,
+.budget-cap-container button,
+.export-container button {
     background-color: var(--main-color);
     color: var(--white);
     border: none;
@@ -170,7 +177,9 @@ section.active {
     transition: background-color 0.2s;
 }
 
-.adding-form button:hover {
+.adding-form button:hover,
+.export-container button:hover,
+.budget-cap-container button:hover{
     background-color: var(--hover-color);
 }
 
@@ -259,6 +268,14 @@ section.active {
     margin-top: -0.8rem;
     display: block;
     font-weight: 500;
+}
+
+.setting-container div {
+  padding: 1rem;
+}
+
+.export-container h2{
+    padding-top: 0.8rem;
 }
 
 footer {
