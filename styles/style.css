@@ -1,3 +1,4 @@
+/* main rules */
 :root {
     --main-color: #2c3e50;
     --secondary-color: #64748b;
@@ -206,6 +207,30 @@ section.active {
     background-color: #f1f5f9;
 }
 
+.record-container .search-sort-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  padding: 1.2rem;
+  border-radius: var(--radius);
+}
+
+.record-container .search-sort-bar input,
+.record-container .search-sort-bar select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: var(--main-color);
+  background-color: var(--white);
+}
+
+.record-container .search-sort-bar input:focus,
+.record-container .search-sort-bar select:focus {
+  border-color: var(--hover-color);
+  outline: none;
+}
+
 #alert-budget {
     margin-bottom: 1rem;
     padding: 1rem;
@@ -235,4 +260,55 @@ section.active {
     margin-top: -0.8rem;
     display: block;
     font-weight: 500;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+/* media query */
+@media (min-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 3rem;
+        text-align: left;
+    }
+    
+    header .logo h1 { margin-bottom: 0; }
+    
+    .stats-grid {
+        flex-direction: row;
+    }
+    
+    .stats-grid .card {
+        flex: 1;
+    }
+
+    .adding-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+     .record-container table {
+        display: table;
+        white-space: normal;
+    }
+    
+    .record-container .search-sort-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    .record-container .search-sort-bar input { 
+      flex: 2; 
+    }
+    .record-container .search-sort-bar select {
+       flex: 1; 
+      }
 }
