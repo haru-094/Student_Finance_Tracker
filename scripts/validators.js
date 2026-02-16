@@ -5,7 +5,7 @@ const date_regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 const category_regex = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
 const duplicate_regex = /\b(\w+)\s+\1\b/;
 
-function check_validation_regex(field_name, val) {
+export function check_validation_regex(field_name, val) {
   if (field_name === "name") {
     if (!name_regex.test(val)) {
       return "There is error on the Name. contain some leading";

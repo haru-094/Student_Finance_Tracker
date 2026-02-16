@@ -1,6 +1,6 @@
 import { get_transaction } from "./state.js";
 
-function show_transaction() {
+export function show_transaction() {
   const table_body = document.querySelector("#transaction-table");
   const transaction_data = get_transaction();
 
@@ -18,8 +18,8 @@ function show_transaction() {
         <td data-label='Category'>${td.category}</td>
         <td data-label='Date'>${td.date}</td>
         <td data-label='Action'>
-            <button class='edit-btn data-id=${td.id}>Edit</button>
-            <button class='delete-btn' data-id=${td.id}>Delete</button>
+            <button class="edit-btn" data-id="${td.id}">Edit</button>
+            <button class="delete-btn" data-id="${td.id}">Delete</button>
         </td>
     `;
     table_body.appendChild(row);

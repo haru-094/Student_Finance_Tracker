@@ -1,6 +1,6 @@
 let transaction = JSON.parse(localStorage.getItem("finance_data_local")) || [];
 
-function new_transaction(data) {
+export function new_transaction(data) {
   let record_new = {
     id: `record_${Date.now()}`,
     description: data.name,
@@ -8,7 +8,7 @@ function new_transaction(data) {
     category: data.category,
     date: data.date,
     createdAt: new Date().toISOString(),
-    updateAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 
   transaction.push(record_new);
@@ -16,6 +16,6 @@ function new_transaction(data) {
   return record_new;
 }
 
-function get_transaction() {
+export function get_transaction() {
   return transaction;
 }
