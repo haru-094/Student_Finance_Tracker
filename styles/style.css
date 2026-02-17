@@ -256,6 +256,7 @@ section.active {
   font-size: 1rem;
   color: var(--main-color);
   background-color: var(--white);
+  border-radius: 20px;
 }
 
 .record-container .search-sort-bar input:focus,
