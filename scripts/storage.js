@@ -21,4 +21,11 @@ export function config_base_setting() {
       update_dashboard();
     }
   });
+
+  export_json_btn.addEventListener("click", function () {
+    const data = get_transaction();
+    const converting_data = JSON.stringify(data, null, 2);
+    const json_url = new Blob([converting_data], { type: "application/json" });
+    const url = URL.createObjectURL(json_url);
+  });
 }
