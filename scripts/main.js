@@ -1,42 +1,65 @@
-// import the function from diffrenet files
-import { new_transaction } from "./state.js";
-import { show_transaction } from "./ui.js";
+import {
+  new_transaction,
+  delete_transaction,
+  update_transaction,
+  get_transaction,
+} from "./state.js";
+import { show_transaction, update_dashboard } from "./ui.js";
 import { check_validation_regex } from "./validators.js";
+import { search_regex_checker } from "./search.js";
 
-// main var to handle the app
 let nav_items = document.querySelectorAll(".nav-links a");
 let section_part = document.querySelectorAll("main > section");
 const adding_form = document.querySelector("#adding-form");
+const table_body = document.querySelector("#transaction-table");
 
-// for loop that go through the link (a) then change the section based on the click
 for (let i = 0; i < nav_items.length; i++) {
   nav_items[i].addEventListener("click", function (e) {
     e.preventDefault();
     nav_items.forEach((nav) => nav.classList.remove("active"));
     section_part.forEach((section) => section.classList.remove("active"));
-
     this.classList.add("active");
     let target_nav = this.getAttribute("href").substring(1);
     document.getElementById(target_nav).classList.add("active");
-
-    // for (let j = 0; j < nav_items.length; j++) {
-    //   nav_items[j].classList.remove("active");
-    // }
-    // this.classList.add("active");
-
-    // for (let k = 0; k < section_part.length; k++) {
-    //   section_part[k].classList.remove("active");
-    // }
-    // let targetId = this.getAttribute("href").substring(1);
-    // document.getElementById(targetId).classList.add("active");
   });
 }
 
-// handle the record
 show_transaction();
+update_dashboard();
+search_regex_checker();
+
+table_body.addEventListener("click", (e) => {
+  const id = e.target.getAttribute("data-id");
+
+  if (e.target.classList.contains("delete-btn")) {
+    if (confirm("Delete this record?")) {
+      delete_transaction(id);
+      show_transaction();
+      update_dashboard();
+      document.querySelector("#search-input").dispatchEvent(new Event("keyup"));
+    }
+  }
+
+  if (e.target.classList.contains("edit-btn")) {
+    const allData = get_transaction();
+    const item = allData.find((t) => t.id === id);
+
+    document.getElementById("name").value = item.description;
+    document.getElementById("amount").value = item.amount;
+    document.getElementById("date").value = item.date;
+    document.getElementById("category").value = item.category;
+    document.getElementById("base-id").value = id;
+
+    document.querySelector("a[href='#show-add-edit']").textContent =
+      "Update Transaction";
+    document.querySelector("a[href='#show-add-edit']").click();
+  }
+});
 
 adding_form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  const id = document.getElementById("base-id").value;
 
   const Data = {
     name: document.getElementById("name").value,
@@ -52,11 +75,22 @@ adding_form.addEventListener("submit", function (e) {
   document.getElementById("error-name-msg").textContent = check_name;
   document.getElementById("error-amount-msg").textContent = check_amount;
 
-  console.log("vaild res: ", { check_name, check_amount, check_date });
   if (check_name == "" && check_amount == "" && check_date == "") {
-    new_transaction(Data);
+    if (id) {
+      update_transaction(id, Data);
+      document.getElementById("base-id").value = "";
+      document.querySelector("a[href='#show-add-edit']").textContent =
+        "Adding Transactions";
+    } else {
+      new_transaction(Data);
+    }
+
     adding_form.reset();
+
+    document.getElementById("search-input").value = "";
+
     show_transaction();
+    update_dashboard();
 
     document.querySelector("a[href='#show-record']").click();
   }
