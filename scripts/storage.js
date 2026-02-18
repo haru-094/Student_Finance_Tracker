@@ -61,7 +61,7 @@ export function config_base_setting() {
     document.body.removeChild(a);
   });
 
-  importInput.addEventListener("change", (e) => {
+  import_json_input.addEventListener("change", (e) => {
     const file_reader = e.target.files[0];
     if (!file_reader) return;
     const reader = new FileReader();
