@@ -2,7 +2,10 @@ import { get_transaction } from "./state.js";
 
 export function update_dashboard() {
   const data = get_transaction();
-  const budget = parseFloat(document.getElementById("budget-cap").value) || 0;
+  const budget =
+    parseFloat(document.getElementById("budget-cap").value) ||
+    parseFloat(localStorage.getItem("budget-cap")) ||
+    0;
 
   const totalSpent = data.reduce((sum, item) => sum + Number(item.amount), 0);
 

@@ -1,11 +1,11 @@
-import { get_transaction } from "./state";
-import { show_transaction, update_dashboard } from "./ui";
+import { get_transaction } from "./state.js";
+import { show_transaction, update_dashboard } from "./ui.js";
 
 export function config_base_setting() {
   const budget_input = document.querySelector("#budget-cap");
   const save_budget_btn = document.querySelector("#save-budget-cap");
-  const export_json_btn = document.querySelector("export-json");
-  const import_json_input = document.querySelector("import-json");
+  const export_json_btn = document.querySelector("#export-json");
+  const import_json_input = document.querySelector("#import-json");
 
   const get_budget_local = localStorage.getItem("budget-cap");
   if (get_budget_local) {
@@ -32,11 +32,11 @@ export function config_base_setting() {
     a_tag.download = `finance_backup_${new Date().toISOString().slice(0, 10)}.json`;
     document.body.append(a_tag);
     a_tag.click();
-    document.body.removeChild(a);
+    document.body.removeChild(a_tag);
   });
 
   import_json_input.addEventListener("change", function (e) {
-    const upload_file = e.target.file[0];
+    const upload_file = e.target.files[0];
     if (!upload_file) {
       return;
     }
