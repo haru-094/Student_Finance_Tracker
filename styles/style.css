@@ -160,7 +160,57 @@ section.active {
 }
 
 .chart-container {
+  display: flex;
+  justify-content: space-between;
   height: 250px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.chart-bar-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.chart-bar {
+  width: 30px;
+  background-color: var(--secondary-color);
+  border-radius: 4px 4px 0 0;
+  transition:
+    height 0.5s ease,
+    background-color 0.3s;
+  min-height: 2px;
+}
+
+.chart-bar:hover {
+  background-color: var(--hover-color);
+}
+
+.chart-bar:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.chart-label {
+  font-size: 0.7rem;
+  color: var(--secondary-color);
+  margin-top: 5px;
 }
 
 .adding-form {
