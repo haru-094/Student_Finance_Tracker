@@ -21,7 +21,7 @@ for (let i = 0; i < nav_items.length; i++) {
     section_part.forEach((section) => section.classList.remove("active"));
     this.classList.add("active");
     let target_nav = this.getAttribute("href").substring(1);
-    document.getElementById(target_nav).classList.add("active");
+    document.querySelector("#" + target_nav).classList.add("active");
   });
 }
 
@@ -46,11 +46,11 @@ table_body.addEventListener("click", (e) => {
     const allData = get_transaction();
     const item = allData.find((t) => t.id === id);
 
-    document.getElementById("name").value = item.description;
-    document.getElementById("amount").value = item.amount;
-    document.getElementById("date").value = item.date;
-    document.getElementById("category").value = item.category;
-    document.getElementById("base-id").value = id;
+    document.querySelector("#name").value = item.description;
+    document.querySelector("#amount").value = item.amount;
+    document.querySelector("#date").value = item.date;
+    document.querySelector("#category").value = item.category;
+    document.querySelector("#base-id").value = id;
 
     document.querySelector("a[href='#show-add-edit']").textContent =
       "Update Transaction";
@@ -61,26 +61,26 @@ table_body.addEventListener("click", (e) => {
 adding_form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const id = document.getElementById("base-id").value;
+  const id = document.querySelector("#base-id").value;
 
   const Data = {
-    name: document.getElementById("name").value,
-    amount: document.getElementById("amount").value,
-    date: document.getElementById("date").value,
-    category: document.getElementById("category").value,
+    name: document.querySelector("#name").value,
+    amount: document.querySelector("#amount").value,
+    date: document.querySelector("#date").value,
+    category: document.querySelector("#category").value,
   };
 
   const check_name = check_validation_regex("name", Data.name);
   const check_amount = check_validation_regex("amount", Data.amount);
   const check_date = check_validation_regex("date", Data.date);
 
-  document.getElementById("error-name-msg").textContent = check_name;
-  document.getElementById("error-amount-msg").textContent = check_amount;
+  document.querySelector("#error-name-msg").textContent = check_name;
+  document.querySelector("#error-amount-msg").textContent = check_amount;
 
   if (check_name == "" && check_amount == "" && check_date == "") {
     if (id) {
       update_transaction(id, Data);
-      document.getElementById("base-id").value = "";
+      document.querySelector("#base-id").value = "";
       document.querySelector("a[href='#show-add-edit']").textContent =
         "Adding Transactions";
     } else {
@@ -89,7 +89,7 @@ adding_form.addEventListener("submit", function (e) {
 
     adding_form.reset();
 
-    document.getElementById("search-input").value = "";
+    document.querySelector("#search-input").value = "";
 
     show_transaction();
     update_dashboard();
