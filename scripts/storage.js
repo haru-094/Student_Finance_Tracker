@@ -7,61 +7,82 @@ export function config_base_setting() {
   const export_json_btn = document.querySelector("#export-json");
   const import_json_input = document.querySelector("#import-json");
 
-  const get_budget_local = localStorage.getItem("budget-cap");
-  if (get_budget_local) {
-    budget_input.value = get_budget_local;
-    update_dashboard();
-  }
+  const currencySelect = document.querySelector("#currency-select");
+  const rwfInput = document.querySelector("#rwf-rate");
+  const sarInput = document.querySelector("#sar-rate");
 
-  save_budget_btn.addEventListener("click", function () {
-    const value = budget_input.value;
-    if (value) {
-      localStorage.setItem("budget-cap", value);
-      alert("Budget saved successful");
+  const savedBudget = localStorage.getItem("budget_cap");
+  if (savedBudget) budget_input.value = savedBudget;
+
+  const savedCurrency = localStorage.getItem("app_currency");
+  if (savedCurrency) currencySelect.value = savedCurrency;
+
+  const savedRwf = localStorage.getItem("rate_rwf");
+  if (savedRwf) rwfInput.value = savedRwf;
+
+  const savedSar = localStorage.getItem("rate_sar");
+  if (savedSar) sarInput.value = savedSar;
+
+  update_dashboard();
+  show_transaction();
+
+  save_budget_btn.addEventListener("click", () => {
+    if (budget_input.value) {
+      localStorage.setItem("budget_cap", budget_input.value);
+      alert("Settings Saved!");
       update_dashboard();
     }
   });
 
-  export_json_btn.addEventListener("click", function () {
+  function updateCurrencySettings() {
+    localStorage.setItem("app_currency", currencySelect.value);
+    localStorage.setItem("rate_rwf", rwfInput.value);
+    localStorage.setItem("rate_sar", sarInput.value);
+
+    update_dashboard();
+    show_transaction();
+  }
+
+  currencySelect.addEventListener("change", updateCurrencySettings);
+  rwfInput.addEventListener("input", updateCurrencySettings);
+  sarInput.addEventListener("input", updateCurrencySettings);
+
+  export_json_btn.addEventListener("click", () => {
     const data = get_transaction();
-    const converting_data = JSON.stringify(data, null, 2);
-    const json_url = new Blob([converting_data], { type: "application/json" });
-    const url = URL.createObjectURL(json_url);
-    const a_tag = document.createElement("a");
-    a_tag.href = url;
-    a_tag.download = `finance_backup_${new Date().toISOString().slice(0, 10)}.json`;
-    document.body.append(a_tag);
-    a_tag.click();
-    document.body.removeChild(a_tag);
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `finance_backup_${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   });
 
-  import_json_input.addEventListener("change", function (e) {
-    const upload_file = e.target.files[0];
-    if (!upload_file) {
-      return;
-    }
-
-    const file_read = new FileReader();
-    file_read.onload = function (e) {
+  importInput.addEventListener("change", (e) => {
+    const file_reader = e.target.files[0];
+    if (!file_reader) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
       try {
-        const import_data = JSON.parse(e.target.result);
-        if (Array.isArray(import_data)) {
-          if (
-            confirm("This will make overwrite on your data, will continue?")
-          ) {
+        const importedData = JSON.parse(e.target.result);
+        if (Array.isArray(importedData)) {
+          if (confirm("Overwrite data?")) {
             localStorage.setItem(
               "finance_data_local",
-              JSON.stringify(import_data),
+              JSON.stringify(importedData),
             );
             location.reload();
           }
         } else {
-          alert("invaild json file");
+          alert("Invalid JSON");
         }
-      } catch (error) {
-        alert("error on reading the file");
+      } catch (err) {
+        alert("Error reading file");
       }
     };
-    file_read.readAsText(upload_file);
+    reader.readAsText(file_reader);
   });
 }
