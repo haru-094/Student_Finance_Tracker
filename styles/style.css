@@ -147,7 +147,7 @@ section.active {
   color: var(--main-color);
 }
 
-.full-width-card {
+.full-card {
   background: var(--white);
   padding: 1.5rem;
   border-radius: var(--radius);
