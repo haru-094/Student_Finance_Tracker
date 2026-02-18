@@ -7,6 +7,7 @@ import {
 import { show_transaction, update_dashboard } from "./ui.js";
 import { check_validation_regex } from "./validators.js";
 import { search_regex_checker } from "./search.js";
+import { config_base_setting } from "./storage.js";
 
 let nav_items = document.querySelectorAll(".nav-links a");
 let section_part = document.querySelectorAll("main > section");
@@ -27,6 +28,7 @@ for (let i = 0; i < nav_items.length; i++) {
 show_transaction();
 update_dashboard();
 search_regex_checker();
+config_base_setting();
 
 table_body.addEventListener("click", (e) => {
   const id = e.target.getAttribute("data-id");
