@@ -4,7 +4,7 @@ A responsive, accessible, and offline-capable web application designed to help s
 
 # 🌐 Live Deployment
 
-[Live Website]([https://haru-094.github.io/Student_Finance_Tracker/])
+[Live Website](https://haru-094.github.io/Student_Finance_Tracker/)
 
 # 🎥 Demo Video
 
