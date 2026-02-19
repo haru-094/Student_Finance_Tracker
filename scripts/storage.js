@@ -10,6 +10,7 @@ export function config_base_setting() {
   const currencySelect = document.querySelector("#currency-select");
   const rwfInput = document.querySelector("#rwf-rate");
   const sarInput = document.querySelector("#sar-rate");
+  const saveCurrencyBtn = document.querySelector("#save-currency-settings");
 
   const savedBudget = localStorage.getItem("budget_cap");
   if (savedBudget) budget_input.value = savedBudget;
@@ -26,26 +27,28 @@ export function config_base_setting() {
   update_dashboard();
   show_transaction();
 
+  currencySelect.addEventListener("change", () => {
+    localStorage.setItem("app_currency", currencySelect.value);
+    update_dashboard();
+    show_transaction();
+  });
+
+  saveCurrencyBtn.addEventListener("click", () => {
+    if (rwfInput.value) localStorage.setItem("rate_rwf", rwfInput.value);
+    if (sarInput.value) localStorage.setItem("rate_sar", sarInput.value);
+
+    alert("Currency Exchange Rates Saved!");
+    update_dashboard();
+    show_transaction();
+  });
+
   save_budget_btn.addEventListener("click", () => {
     if (budget_input.value) {
       localStorage.setItem("budget_cap", budget_input.value);
-      alert("Settings Saved!");
+      alert("Budget Saved!");
       update_dashboard();
     }
   });
-
-  function updateCurrencySettings() {
-    localStorage.setItem("app_currency", currencySelect.value);
-    localStorage.setItem("rate_rwf", rwfInput.value);
-    localStorage.setItem("rate_sar", sarInput.value);
-
-    update_dashboard();
-    show_transaction();
-  }
-
-  currencySelect.addEventListener("change", updateCurrencySettings);
-  rwfInput.addEventListener("input", updateCurrencySettings);
-  sarInput.addEventListener("input", updateCurrencySettings);
 
   export_json_btn.addEventListener("click", () => {
     const data = get_transaction();

@@ -28,36 +28,25 @@ function render_chart(data) {
   chartContainer.innerHTML = "<div class='chart-container'></div>";
   const wrapper = chartContainer.querySelector(".chart-container");
 
-  const last7Days = [];
+  const last_7_days = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
-    last7Days.push(d.toISOString().split("T")[0]);
+    last_7_days.push(d.toISOString().split("T")[0]);
   }
 
-  let dailyTotals = [];
-  for (let j = 0; j < last7Days.length; j++) {
-    let date = last7Days[j];
-    let daySum = 0;
-    for (let k = 0; k < data.length; k++) {
-      if (data[k].date === date) {
-        daySum = daySum + Number(data[k].amount);
-      }
-    }
-    dailyTotals.push({ date: date, amount: daySum });
-  }
+  const daily_totals = last_7_days.map((date) => {
+    const day_sum = data
+      .filter((t) => t.date === date)
+      .reduce((sum, t) => sum + Number(t.amount), 0);
+    return { date, amount: day_sum };
+  });
 
-  let maxAmount = 1;
-  for (let m = 0; m < dailyTotals.length; m++) {
-    if (dailyTotals[m].amount > maxAmount) {
-      maxAmount = dailyTotals[m].amount;
-    }
-  }
+  const maxAmount = Math.max(...daily_totals.map((d) => d.amount)) || 1;
 
-  for (let n = 0; n < dailyTotals.length; n++) {
-    let day = dailyTotals[n];
-    let heightPct = (day.amount / maxAmount) * 100;
-    let dateLabel = new Date(day.date).toLocaleDateString("en-US", {
+  daily_totals.forEach((day) => {
+    const heightPct = (day.amount / maxAmount) * 100;
+    const dateLabel = new Date(day.date).toLocaleDateString("en-US", {
       weekday: "short",
     });
 
@@ -70,7 +59,7 @@ function render_chart(data) {
       </div>
     `;
     wrapper.insertAdjacentHTML("beforeend", barHtml);
-  }
+  });
 }
 
 export function update_dashboard() {
@@ -78,11 +67,11 @@ export function update_dashboard() {
   const budgetInput =
     parseFloat(document.querySelector("#budget-cap").value) || 0;
 
-  let totalSpentUSD = 0;
-  for (let i = 0; i < data.length; i++) {
-    totalSpentUSD = totalSpentUSD + Number(data[i].amount);
-  }
-  let remainingUSD = budgetInput - totalSpentUSD;
+  const totalSpentUSD = data.reduce(
+    (sum, item) => sum + Number(item.amount),
+    0,
+  );
+  const remainingUSD = budgetInput - totalSpentUSD;
 
   const counts = {};
   let topCat = "None";

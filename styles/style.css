@@ -268,7 +268,8 @@ section.active {
 
 .adding-form button,
 .budget-cap-container button,
-.export-container button {
+.export-container button,
+.currency-change button {
   background-color: var(--main-color);
   color: var(--white);
   border: none;
@@ -284,7 +285,8 @@ section.active {
 
 .adding-form button:hover,
 .export-container button:hover,
-.budget-cap-container button:hover {
+.budget-cap-container button:hover,
+.currency-change button:hover {
   background-color: var(--hover-color);
 }
 
